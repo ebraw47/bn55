@@ -283,14 +283,8 @@ export default function HomePage() {
                 sports books to your phone — with JazzCash &amp; EasyPaisa deposits and withdrawals
                 in Urdu and English. Use the button below for the official APK.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center lg:items-start justify-center lg:justify-start mb-8">
-                <DownloadButton size="lg" />
-                <Link
-                  href="/download-bn55"
-                  className="inline-flex w-fit items-center justify-center px-5 py-2.5 sm:px-8 sm:py-4 rounded-full border border-gray-600 text-sm sm:text-base text-white font-semibold hover:border-accent hover:text-accent transition-colors"
-                >
-                  Installation Guide
-                </Link>
+              <div className="flex items-center lg:items-start justify-center lg:justify-start mb-8">
+                <DownloadButton size="lg" blink />
               </div>
               <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
                 {[
@@ -450,9 +444,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Screenshots */}
-      <section className="py-12 md:py-16 px-4">
-        <div className="container mx-auto">
+      {/* Screenshots — continuous right-to-left marquee */}
+      <section className="py-12 md:py-16 overflow-hidden">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-3">
             BN55 App Screenshots
           </h2>
@@ -460,18 +454,20 @@ export default function HomePage() {
             Real lobby views — hot games, live casino, sports, missions, rebate, invite, deposit and
             withdraw.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {screenshots.map((shot) => (
+        </div>
+        <div className="screenshot-marquee" aria-label="BN55 app screenshots scrolling gallery">
+          <div className="screenshot-marquee-track">
+            {[...screenshots, ...screenshots].map((shot, i) => (
               <figure
-                key={shot.src}
-                className="bg-secondary rounded-xl overflow-hidden border border-gray-800"
+                key={`${shot.src}-${i}`}
+                className="screenshot-marquee-item bg-secondary rounded-xl overflow-hidden border border-gray-800"
               >
                 <Image
                   src={shot.src}
                   alt={shot.alt}
                   width={720}
                   height={1280}
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 160px, 200px"
                   className="w-full h-auto object-contain"
                 />
                 <figcaption className="p-3 text-center text-sm text-accent font-semibold">
@@ -686,7 +682,9 @@ export default function HomePage() {
             </Link>{' '}
             using BlueStacks or LDPlayer.
           </p>
-          <DownloadButton />
+          <div className="flex justify-center">
+            <DownloadButton />
+          </div>
         </div>
       </section>
 
@@ -696,19 +694,21 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-10">
             Deposit &amp; Withdraw with JazzCash / EasyPaisa
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-primary rounded-2xl border border-gray-800 overflow-hidden">
-              <Image
-                src="/bn55-deposit-money.webp"
-                alt="BN55 deposit JazzCash EasyPaisa"
-                width={720}
-                height={1280}
-                className="w-full h-auto object-contain"
-                sizes="50vw"
-              />
-              <div className="p-6">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            <div className="bg-primary rounded-2xl border border-gray-800 overflow-hidden flex flex-col">
+              <div className="flex justify-center px-6 pt-6">
+                <Image
+                  src="/bn55-deposit-money.webp"
+                  alt="BN55 deposit JazzCash EasyPaisa"
+                  width={720}
+                  height={1280}
+                  className="w-full max-w-[220px] md:max-w-[240px] h-auto object-contain rounded-lg"
+                  sizes="240px"
+                />
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-2xl font-bold text-accent mb-3">How to Deposit</h3>
-                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside mb-4">
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside mb-4 flex-1">
                   <li>Open wallet → Deposit (جمع).</li>
                   <li>Select EasyPaisa VIP or JazzCash VIP.</li>
                   <li>Pick a payment channel and amount (100–50,000).</li>
@@ -719,18 +719,20 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="bg-primary rounded-2xl border border-gray-800 overflow-hidden">
-              <Image
-                src="/bn55-withdraw-money.webp"
-                alt="BN55 withdraw JazzCash EasyPaisa"
-                width={720}
-                height={1280}
-                className="w-full h-auto object-contain"
-                sizes="50vw"
-              />
-              <div className="p-6">
+            <div className="bg-primary rounded-2xl border border-gray-800 overflow-hidden flex flex-col">
+              <div className="flex justify-center px-6 pt-6">
+                <Image
+                  src="/bn55-withdraw-money.webp"
+                  alt="BN55 withdraw JazzCash EasyPaisa"
+                  width={720}
+                  height={1280}
+                  className="w-full max-w-[220px] md:max-w-[240px] h-auto object-contain rounded-lg"
+                  sizes="240px"
+                />
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-2xl font-bold text-accent mb-3">How to Withdraw</h3>
-                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside mb-4">
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside mb-4 flex-1">
                   <li>Open wallet → Withdraw (واپسی).</li>
                   <li>Bind EasyPaisa or JazzCash account details.</li>
                   <li>Complete any shown turnover (e.g. Slots/Fish).</li>

@@ -102,7 +102,15 @@ export default function Footer() {
             <p className="text-sm text-gray-300 mb-4">
               Download BN55 to enjoy Teen Patti and earn real cash rewards on your mobile device.
             </p>
-            <DownloadButton size="sm" />
+            <div className="flex flex-col gap-3 items-start">
+              <DownloadButton size="sm" />
+              <Link
+                href="/download-bn55"
+                className="inline-flex w-fit items-center justify-center px-5 py-2.5 rounded-full border border-gray-600 text-sm text-white font-semibold hover:border-accent hover:text-accent transition-colors"
+              >
+                Installation Guide
+              </Link>
+            </div>
           </div>
         </div>
         

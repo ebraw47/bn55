@@ -83,6 +83,28 @@ section {
   animation: bounce 0.5s ease infinite;
 }
 
+.download-btn-blink {
+  animation: download-btn-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes download-btn-blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.55);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 18px 4px rgba(14, 165, 233, 0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download-btn-blink {
+    animation: none;
+  }
+}
+
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -113,4 +135,72 @@ section {
 /* Prevent layout shift by ensuring content takes up space */
 .stars-bg {
   pointer-events: none;
+}
+
+/* Screenshots marquee — scrolls right → left */
+.screenshot-marquee {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4%,
+    black 96%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4%,
+    black 96%,
+    transparent
+  );
+}
+
+.screenshot-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding-inline: 0.5rem;
+  animation: screenshot-marquee-rtl 45s linear infinite;
+}
+
+.screenshot-marquee:hover .screenshot-marquee-track {
+  animation-play-state: paused;
+}
+
+.screenshot-marquee-item {
+  flex: 0 0 auto;
+  width: 160px;
+}
+
+@media (min-width: 768px) {
+  .screenshot-marquee-track {
+    gap: 1.25rem;
+  }
+
+  .screenshot-marquee-item {
+    width: 200px;
+  }
+}
+
+@keyframes screenshot-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screenshot-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
 } 

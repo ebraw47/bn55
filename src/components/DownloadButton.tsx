@@ -4,6 +4,7 @@ type DownloadButtonProps = {
   label?: string;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
+  blink?: boolean;
 };
 
 const sizeClasses = {
@@ -28,6 +29,7 @@ export default function DownloadButton({
   label = 'DOWNLOAD NOW',
   className = '',
   size = 'md',
+  blink = false,
 }: DownloadButtonProps) {
   return (
     <a
@@ -35,7 +37,7 @@ export default function DownloadButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Download BN55 APK for Android"
-      className={`download-btn inline-flex w-fit max-w-full items-center justify-center rounded-full border-2 border-[#0ea5e9] bg-[#083000] text-white font-semibold hover:bg-[#0ea5e9]/10 transition-all group ${sizeClasses[size]} ${className}`}
+      className={`download-btn inline-flex w-fit max-w-full items-center justify-center rounded-full border-2 border-[#0ea5e9] bg-[#083000] text-white font-semibold hover:bg-[#0ea5e9]/10 transition-all group ${sizeClasses[size]} ${blink ? 'download-btn-blink' : ''} ${className}`}
     >
       <span>{label}</span>
       <span
